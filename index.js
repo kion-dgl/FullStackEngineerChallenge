@@ -5,6 +5,10 @@
  **/
 
 const sqlite3 = require('sqlite3').verbose();
+const uuidv4 = require('uuid').v4;
+const uniqid = require('uniqid');
+const bcrypt = require('bcrypt');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -57,10 +61,21 @@ app.listen(port, function() {
 });
 
 
-app.post('/api/v1/addEmployee', function(req, res) {
+app.post('/api/v1/addEmployee', async function(req, res) {
 
 	console.log(req.body);
 	
+	let employee_uuid = uuidv4();
+	let password_text = uniqid();
+
+	let password_hash;
+
+	try {
+		password_hash = await asyncHash(password_hash);
+	} catch(err) {
+		throw err;
+	}
+
 	let sql = `
 		INSERT INTO dat_employees (
 			employee_uuid,
@@ -82,18 +97,92 @@ app.post('/api/v1/addEmployee', function(req, res) {
 	`;
 
 	const args = [
-
+		employee_uuid,
+		req.body.company_email,
+		req.body.display_name,
+		req.body.position,
+		req.body.avatar,
+		password_text,
+		password_hash
 	];
+	
+	try {
+		await asyncQuery('insert', sql, args);
+	} catch(err) {
+		throw err;
+	}
 
-	db.run(sql, args, function(err) {
-		if(err) {
-			throw err;
+	res.json({
+		err : 0,
+		data : {
+			employee_uuid : employee_uuid,
+			company_email : req.body.company_email,
+			display_name : req.body.display_name,
+			position : req.body.position,
+			avatar : req.body.avatar,
+			password_text : password_text,
+			password_hash : password_hash
 		}
-
-		res.json({
-
-		});
 	});
 
-
 });
+
+
+/**
+ * Promise Functions
+ **/
+
+function asyncHash(myPlaintextPassword) {
+	
+	return new Promise (function( resolve, reject) {
+
+		const saltRounds = 10;
+		bcrypt.genSalt(saltRounds, function(err, salt) {
+			if(err) {
+				return reject(err);
+			}
+
+			bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+				if(err) {
+					return reject(err);
+				}
+
+				resolve(hash);
+			});
+
+		});
+
+	});
+
+}
+
+function asyncQuery(type, sql, args) {
+
+	return new Promise (function( resolve, reject) {
+	
+		let stmt;
+
+		switch(type) {
+		case 'insert':
+		case 'update':
+			stmt.run;
+			break;
+		case 'select':
+			stmt.get;
+			break;
+		case 'selectAll':
+			stmt.all;
+			break;
+		}
+
+		stmt(sql, args, function(err, res) {
+			if(err) {
+				return reject(err);
+			}
+
+			resolve(res);
+		});
+
+	});
+
+}
