@@ -480,7 +480,7 @@ main.panel section article div.add.employee:before {
 
 }
 
-main.panel section article div.add.review:before {
+main.panel section article div.add.review-btn:before {
 
 	content: "Add Review";
 

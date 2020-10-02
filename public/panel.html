@@ -153,8 +153,8 @@
 					<b>E</b>mployee <b>R</b>eview
 				</h1>
 
-				<div class="cog"></div>
-				<div class="pill"> Admin </div>
+				<div id='SessionManager.header.logout' class="cog"></div>
+				<div id='SessionManager.header.role' class="pill"> Admin </div>
 
 			</header>
 
@@ -170,8 +170,8 @@
 
 				<div class="menu">
 
-					<li>Employees</li>
-					<li>Performance Reviews</li>
+					<li id="PageManager.menu.employees">Employees</li>
+					<li id="PageManager.menu.reviews">Performance Reviews</li>
 
 				</div>
 
@@ -179,7 +179,7 @@
 
 			<section>
 
-				<article class="hide">
+				<article class="hide" id="PageManager.page.employees">
 
 					<h2>
 						<span>Employees</span>
@@ -243,7 +243,7 @@
 
 				</article>
 
-				<article class="hide">
+				<article class="hide" id="PageManager.page.reviews">
 					
 					<h2>
 						<span>Reviews</span>
@@ -301,11 +301,11 @@
 
 					</div>
 					
-					<div class="add review"></div>
+					<div class="add review-btn"></div>
 
 				</article>
 
-				<article>
+				<article class="hide" id="PageManager.page.comments">
 					
 					<h2>
 						<a class="back">Back</a>
@@ -396,6 +396,9 @@
 		</main>
 
 		<!-- END CONTAINER -->
+
+		<script type="text/javascript" src="js/PageManager.js"></script>
+		<script type="text/javascript" src="js/SessionManager.js"></script>
 
 	</body>
 
