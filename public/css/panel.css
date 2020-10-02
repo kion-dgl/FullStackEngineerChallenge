@@ -699,3 +699,133 @@ main.panel section article ul.comments li table td.text textarea {
 	font-family: 'Mukta', sans-serif;
 
 }
+
+main.modal {
+
+	z-index: 100;
+	background-color: rgba(0,0,0,0.2);
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	position: fixed;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 200ms;
+
+}
+
+main.modal.open {
+
+	opacity: 1;
+	pointer-events: all;
+	
+}
+
+main.modal div.modal {
+
+	width: 500px;
+	min-height: 300px;
+	padding: 40px;
+	border: 1px solid #9a9a9a;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	display: block;
+	margin: auto;
+	transition: transform 200ms;
+
+}
+
+main.modal.open div.modal {
+
+	transform: translateY(90px);
+
+}
+
+main.modal div.modal h3 {
+
+	padding: 10px 0;
+	margin: 0;
+	text-align: center;
+	font-family: 'Mukta', sans-serif;
+	font-size: 32px;
+	color: #555;
+
+}
+
+main.modal div.modal table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 20px;
+	font-family: 'Mukta', sans-serif;
+
+}
+
+main.modal div.modal table td.label {
+
+	width: 140px;
+
+}
+
+main.modal div.modal table.form td {
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+
+main.modal div.modal div.actions {
+
+	margin-top: 30px;
+	height: 40px;
+
+}
+
+main.modal div.modal div.actions table {
+
+	height: 100%;
+
+}
+
+main.modal div.modal table.form td input[type="text"] {
+
+	width: calc(100% - 30px);
+	padding: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	text-indent: 10px;
+
+}
+
+main.modal div.modal table.form td select {
+
+	width: calc(100% - 30px);
+	padding: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	text-indent: 10px;
+
+}
+
+main.modal div.modal table.form td textarea {
+
+	width: calc(100% - 30px);
+	padding: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	text-indent: 10px;
+	min-height: 90px;
+	resize: none;
+
+}
+
+main.modal div.modal div.actions table button {
+
+	width: calc(100% - 8px);
+	display: block;
+	margin: auto;
+
+}
