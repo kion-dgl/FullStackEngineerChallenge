@@ -1,0 +1,23 @@
+{
+  "name": "fullstackengineerchallenge",
+  "version": "1.0.0",
+  "description": "This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kion-dgl/FullStackEngineerChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kion-dgl/FullStackEngineerChallenge/issues"
+  },
+  "homepage": "https://github.com/kion-dgl/FullStackEngineerChallenge#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
