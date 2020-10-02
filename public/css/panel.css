@@ -201,7 +201,6 @@ main.panel section:before {
 
 main.panel section article {
 	
-	height: 500px;
 	width: 1024px;
 	display: block;
 	margin: 20px auto;
@@ -209,6 +208,7 @@ main.panel section article {
 	border-radius: 10px;
 	background-color: #e2e2e2;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	padding-bottom: 20px;
 
 }
 
@@ -348,6 +348,27 @@ main.panel section article h2 {
 
 }
 
+main.panel section article h2 a {
+
+	font-size: 18px;
+	position: absolute;
+	color: #666;
+	top: 0px;
+
+}
+
+main.panel section article h2 a.back {
+
+	left: 40px;
+
+}
+
+main.panel section article h2 a.edit {
+
+	right: 40px;
+
+}
+
 main.panel section article h2 span {
 
 	margin-top: -4px;
@@ -368,12 +389,19 @@ main.panel section article div.employees {
 
 }
 
+main.panel section article div.employees ul {
+
+	padding: 0;
+	margin: 0;
+
+}
+
 main.panel section article div.employees li.thead {
 
 	list-style: none;
 	width: calc(100% - 2px);
 	border: 1px solid #333;
-	height: 30px;
+	height: 50px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	display: block;
@@ -401,8 +429,8 @@ main.panel section article div.add {
 	width: 70px;
 	height: 70px;
 	border-radius: 100%;
-	bottom: 10px;
-	right: 10px;
+	bottom: 30px;
+	right: 30px;
 	background-color: #ed4681;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	
@@ -411,10 +439,263 @@ main.panel section article div.add {
 	background-position: center;
 	background-repeat: no-repeat;
 
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
 }
 
 main.panel section article div.add:hover {
 
 	cursor: pointer;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+main.panel section article div.add:before {
+
+	position: absolute;
+	color: #fff;
+	font-family: 'Mukta', sans-serif;
+	right: calc(100% + 10px);
+	top: 12px;
+	background-color: rgba(0,0,0,0.6);
+	border-radius: 30px;
+	padding: 10px 20px;
+	white-space: nowrap;
+	transform: translateX(10px);
+	font-size: 18px;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	opacity: 0;
+	
+}
+
+main.panel section article div.add:hover:before{
+	
+	transform: translateX(0px);
+	opacity: 1;
+
+}
+
+main.panel section article div.add.employee:before {
+
+	content: "Add Employee";
+
+}
+
+main.panel section article div.add.review:before {
+
+	content: "Add Review";
+
+}
+
+main.panel section article div.employees li.tbody {
+
+	list-style: none;
+	width: calc(100% - 2px);
+	border: 1px solid #333;
+	border-top: none;
+	height: 80px;
+	display: block;
+	margin: auto;
+	background-color: #f8f8f8;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+
+main.panel section article div.employees li.tbody:last-child {
+
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+}
+
+main.panel section article div.employees li.tbody table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 16px;
+	color: #555;
+	font-family: 'Mukta', sans-serif;
+	text-align: center;
+
+}
+
+main.panel section article div.employees li.tbody table div.avatar {
+
+	width: 64px;
+	height: 64px;
+	border: 2px solid #9a9a9a;
+	border-radius: 100%;
+	display: block;
+	margin: auto;
+
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+
+}
+
+main.panel section article div.employees li td.img {
+
+	width: 110px;
+
+}
+
+main.panel section article div.employees li td.remove {
+
+	width: 150px;
+
+}
+
+main.panel section article div.review {
+
+	width: calc(70% - 40px);
+	display: block;
+	margin: 40px auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 1px 1px 5px 0px rgba(92,92,92,1);
+
+}
+
+main.panel section article div.review table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-family: 'Mukta', sans-serif;
+
+}
+
+main.panel section article div.review table td.label {
+
+	font-size: 22px;
+	width: 110px;
+
+}
+
+main.panel section article div.review table td {
+
+	vertical-align: top;
+	padding-bottom: 10px;
+
+}
+
+main.panel section article div.review table td.input div.star {
+
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #333;
+	margin-right: 20px;
+
+}
+
+main.panel section article div.review table td.input input[type="text"] {
+
+	width: calc(100% - 100px);
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	text-indent: 20px;
+	font-family: 'Mukta', sans-serif;
+	font-size: 18px;
+
+}
+
+main.panel section article div.review table td.input textarea {
+
+	width: calc(100% - 100px);
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	text-indent: 20px;
+	font-family: 'Mukta', sans-serif;
+	font-size: 18px;
+	min-height: 200px;
+	resize: none;
+
+}	
+
+main.panel section article ul.comments {
+
+	padding: 0;
+	margin: auto;
+	width: 70%;
+	display: block;
+}
+
+main.panel section article ul.comments li {
+
+	width: calc(100% - 2px);
+	border: 1px solid #9a9a9a;
+	box-shadow: 1px 1px 5px 0px rgba(92,92,92,1);
+	list-style: none;
+	background-color: #fff;
+	border-radius: 8px;
+	min-height: 50px;
+	margin-top: 10px;
+	padding: 8px 0;
+
+}
+
+main.panel section article ul.comments li table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+main.panel section article ul.comments li table td {
+
+	vertical-align: top;
+
+}
+
+main.panel section article ul.comments li table td.avatar {
+
+	width: 130px;
+
+}
+
+main.panel section article ul.comments li table td.submit {
+	
+	width: 150px;
+	vertical-align: bottom;
+
+}
+
+main.panel section article ul.comments li table td.submit button {
+
+	display: block;
+	margin: auto;
+
+}
+
+main.panel section article ul.comments li table td.avatar div.avatar {
+
+	width: 70px;
+	height: 70px;
+	display: block;
+	margin: auto;
+	border-radius: 100%;
+	border: 2px solid #444;
+
+}
+
+main.panel section article ul.comments li table td.text textarea {
+
+	width: calc(100% - 40px);
+	display: block;
+	margin: auto;
+	border-radius: 8px;
+	border: 1px solid #9a9a9a;
+	padding: 8px;
+	resize: none;
+	background-color: #efefef;
+	font-family: 'Mukta', sans-serif;
 
 }

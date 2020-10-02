@@ -68,7 +68,7 @@
 
 			<section>
 
-				<article>
+				<article class="hide">
 
 					<h2>
 						<span>Employees</span>
@@ -98,17 +98,33 @@
 							</table>
 						</li>
 
-						<li class="tbody">
-							<table>
-								<tr>
-									<td class="img"></td>
-									<td class="name"></td>
-									<td class="title"></td>
-									<td class="password"></td>
-									<td class="remove"></td>
-								</tr>
-							</table>
-						</li>
+						<ul>
+							
+							<!--
+							<li class="tbody">
+								<table>
+									<tr>
+										<td class="img">
+											<div class="avatar"></div>
+										</td>
+										<td class="name">
+											Carma Camelion
+										</td>
+										<td class="title">
+											FullStack Dev
+										</td>
+										<td class="password">
+											a32hdskh2
+										</td>
+										<td class="remove">
+											<button>Remove</button>
+										</td>
+									</tr>
+								</table>
+							</li>
+							-->
+
+						</ul>
 
 					</div>
 					
@@ -122,13 +138,145 @@
 						<span>Reviews</span>
 					</h2>
 
+					<div class="employees">
+
+						<li class="thead">
+							<table>
+								<tr>
+									<td class="img">
+										Avatar
+									</td>
+									<td class="name">
+										Name
+									</td>
+									<td class="title">
+										Rating
+									</td>
+									<td class="password">
+										Created On
+									</td>
+									<td class="remove">
+										View
+									</td>
+								</tr>
+							</table>
+						</li>
+
+						<ul>
+							
+							<li class="tbody">
+								<table>
+									<tr>
+										<td class="img">
+											<div class="avatar"></div>
+										</td>
+										<td class="name">
+											Carma Camelion
+										</td>
+										<td class="title">
+											FullStack Dev
+										</td>
+										<td class="password">
+											a32hdskh2
+										</td>
+										<td class="remove">
+											<button>View</button>
+										</td>
+									</tr>
+								</table>
+							</li>
+
+						</ul>
+
+					</div>
+					
+					<div class="add review"></div>
+
 				</article>
 
-				<article class="hide">
+				<article>
 					
 					<h2>
+						<a class="back">Back</a>
 						<span>Single Review</span>
+						<a class="edit">Edit</a>
 					</h2>
+
+					<div class="review">
+
+						<table>
+							<tbody>
+								<tr>
+									<td class="label">Title</td>
+									<td class="input">
+										<input type="text" placeholder="Title"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="label">Rating</td>
+									<td class="input">
+
+										<div class="star"></div>
+										<div class="star"></div>
+										<div class="star"></div>
+										<div class="star"></div>
+										<div class="star"></div>
+
+									</td>
+								</tr>
+								<tr>
+									<td class="label">Review</td>
+									<td class="input">
+										<textarea placeholder="Review"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<ul class="comments">
+
+						<div class="list">
+
+							<li>
+								<table>
+									<tr>
+										<td class="avatar">
+											<div class="avatar"></div>
+										</td>
+										<td class="text">
+											<textarea readonly="readonly"></textarea>
+										</td>
+										<td class="submit">
+										</td>
+									</tr>
+								</table>
+							</li>
+
+						</div>
+
+						<div class="create">
+
+							<li>
+								<table>
+									<tr>
+										<td class="avatar">
+											<div class="avatar"></div>
+										</td>
+										<td class="text">
+											<textarea></textarea>
+										</td>
+										<td class="submit">
+											<button>Comment</button>
+										</td>
+									</tr>
+								</table>
+							</li>
+
+						</div>
+
+					</ul>
 
 				</article>
 
