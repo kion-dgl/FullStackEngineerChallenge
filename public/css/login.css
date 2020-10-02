@@ -41,6 +41,58 @@ h1 {
 
 }
 
+div.label {
+
+	color: #555;
+	font-size: 28px;
+	font-family: 'Mukta', sans-serif;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	display: block;
+	letter-spacing: 2px;
+
+}
+
+label {
+
+	color: #444;
+	font-family: 'Mukta', sans-serif;
+	font-size: 18px;
+	letter-spacing: 2px;
+
+}
+
+div.input {
+
+	padding-bottom: 20px;
+
+}
+
+div.input input {
+
+	padding: 10px 0;
+	font-size: 20px;
+	text-indent: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: calc(100% - 22px);
+
+}
+
+div.input input:focus {
+
+	box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+
+}
+div.form form {
+
+	width: 70%;
+	display: block;
+	margin: auto;
+	padding: 30px 0;
+
+}
+
 div.form {
 
 	width: 500px;
@@ -54,3 +106,45 @@ div.form {
 
 }
 
+div.form button.submit {
+
+	background-color: #3faddb;
+	border: 2px solid #3faddb;
+	border-radius: 4px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	width: 70%;
+	display: block;
+	margin: auto;
+	color: #fff;
+	font-family: 'Mukta', sans-serif;
+	font-size: 25px;
+	padding: 8px 0;
+
+}
+
+div.form button.submit:hover {
+
+	cursor: pointer;
+	background-color: #18779f;
+
+}
+
+div.forgot {
+
+	display: block;
+	margin: auto;
+	text-align: center;
+	font-size: 18px;
+	color: #18779f;
+	font-family: 'Mukta', sans-serif;
+	margin-top: 20px;
+	letter-spacing: 1px;
+
+}
+
+div.forgot span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
