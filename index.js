@@ -313,6 +313,40 @@ app.post('/api/v1/selectReview', async function(req, res) {
 
 });
 
+app.post('/api/v1/updateReview', async function(req, res) {
+
+	let sql = `
+		UPDATE
+			dat_reviews
+		SET
+			updated_on = datetime('now'),
+			title = ?,
+			rating = ?,
+			review = ?
+		WHERE
+			review_uuid = ?
+	`;
+	
+	let args = [
+		req.body.title,
+		req.body.rating,
+		req.body.review,
+		req.body.review_uuid
+	];
+
+	try {
+		await asyncQuery('update', sql, args);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : null
+	});
+
+});
+
 /**
  * Promise Functions
  **/

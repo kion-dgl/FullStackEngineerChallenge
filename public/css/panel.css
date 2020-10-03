@@ -370,9 +370,27 @@ main.panel section article h2 a.back {
 
 }
 
+main.panel section article h2 a.hide {
+
+	display: none;
+
+}
+
 main.panel section article h2 a.edit {
 
 	right: 40px;
+
+}
+
+main.panel section article h2 a.cancel {
+
+	right: 40px;
+
+}
+
+main.panel section article h2 a.save {
+
+	right: 120px;
 
 }
 
@@ -611,7 +629,7 @@ main.panel section article div.review table td.input input[type="text"] {
 
 	width: calc(100% - 100px);
 	padding: 8px;
-	border: 1px solid #ccc;
+	border: 1px solid #18779f;
 	border-radius: 8px;
 	text-indent: 20px;
 	font-family: 'Mukta', sans-serif;
@@ -619,13 +637,19 @@ main.panel section article div.review table td.input input[type="text"] {
 
 }
 
+main.panel section article div.review table td.input input[readonly="readonly"],
+main.panel section article div.review table td.input textarea[readonly="readonly"] {
+
+	border-color: #ccc;
+
+}
+
 main.panel section article div.review table td.input textarea {
 
 	width: calc(100% - 100px);
 	padding: 8px;
-	border: 1px solid #ccc;
+	border: 1px solid #18779f;
 	border-radius: 8px;
-	text-indent: 20px;
 	font-family: 'Mukta', sans-serif;
 	font-size: 18px;
 	min-height: 200px;
