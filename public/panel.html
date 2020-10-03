@@ -101,13 +101,21 @@
 						</td>
 						<td>
 							<select id="ReviewManager.modal.rating">
-								<option value="-1">Select a Rating</option>
+								<option value="none">Select a Rating</option>
 								<option value="5">5 Outstanding</option>
 								<option value="4">4 Pretty Good</option>
 								<option value="3">3 Could be Better</option>
 								<option value="2">2 Really Sucked</option>
 								<option value="1">1 Couldn't be Worse</option>
 							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							Title
+						</td>
+						<td>
+							<input type="text" id="ReviewManager.modal.title" />
 						</td>
 					</tr>
 					<tr>
@@ -261,10 +269,10 @@
 										Name
 									</td>
 									<td class="title">
-										Rating
+										Title
 									</td>
 									<td class="password">
-										Created On
+										Rating
 									</td>
 									<td class="remove">
 										View

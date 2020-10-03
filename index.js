@@ -42,6 +42,19 @@ const db = new sqlite3.Database('./db.sqlite', function() {
 				created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				removed_on TIMESTAMP NULL DEFAULT NULL
 			)
+		`,
+		`
+			CREATE TABLE IF NOT EXISTS dat_reviews (
+				review_uuid VARCHAR(36) NOT NULL UNIQUE,
+				employee_uuid VARCHAR(36) NOT NULL,
+				display_name VARCHAR(255) NOT NULL,
+				avatar TEXT NOT NULL,
+				title VARCHAR(255) NOT NULL,
+				rating TINYINT NOT NULL,
+				review TEXT NOT NULL,
+				created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				updated_on TIMESTAMP NULL DEFAULT NULL
+			)
 		`
 	];
 
@@ -195,6 +208,108 @@ app.post('/api/v1/removeEmployee', async function(req, res) {
 
 });
 
+
+app.post('/api/v1/createReview', async function(req, res) {
+
+	let review_uuid = uuidv4();
+	
+	let sql = `
+		INSERT INTO dat_reviews (
+			review_uuid,
+			employee_uuid,
+			display_name,
+			avatar,
+			title,
+			rating,
+			review
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)
+	`;
+
+	const args = [
+		review_uuid,
+		req.body.employee_uuid,
+		req.body.display_name,
+		req.body.avatar,
+		req.body.title,
+		req.body.rating,
+		req.body.review
+	];
+	
+	try {
+		await asyncQuery('insert', sql, args);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : review_uuid
+	});
+
+});
+
+app.post('/api/v1/selectReviews', async function(req, res) {
+
+	let sql = `
+		SELECT
+			review_uuid,
+			display_name,
+			avatar,
+			title,
+			rating,
+			created_on
+		FROM
+			dat_reviews
+		ORDER BY
+			created_on DESC
+	`;
+	
+	let rows;
+	try {
+		rows = await asyncQuery('selectAll', sql, []);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : rows
+	});
+
+});
+
+app.post('/api/v1/selectReview', async function(req, res) {
+
+	let sql = `
+		SELECT
+			*
+		FROM
+			dat_reviews
+		ORDER BY
+			created_on DESC
+	`;
+	
+	let row;
+	try {
+		row = await asyncQuery('select', sql, []);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : row
+	});
+
+});
 
 /**
  * Promise Functions
