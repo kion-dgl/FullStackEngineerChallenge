@@ -71,7 +71,7 @@ app.post('/api/v1/addEmployee', async function(req, res) {
 	let password_hash;
 
 	try {
-		password_hash = await asyncHash(password_hash);
+		password_hash = await asyncHash(password_text);
 	} catch(err) {
 		throw err;
 	}
