@@ -4,6 +4,7 @@
  * Imports
  **/
 
+const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 const uuidv4 = require('uuid').v4;
 const uniqid = require('uniqid');
@@ -11,6 +12,7 @@ const bcrypt = require('bcrypt');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 /** 
  * Initialize Application
@@ -19,7 +21,16 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(session({
+	secret: 'wjIcoqihx1',
+	resave: false,
+	saveUninitialized: false,
+	cookie : {
+		maxAge : 3600000
+	}
+}));
 
+const admin_avatar = fs.readFileSync('admin_avatar.base64').toString();
 
 /**
  * Initialize Database
@@ -54,6 +65,15 @@ const db = new sqlite3.Database('./db.sqlite', function() {
 				review TEXT NOT NULL,
 				created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				updated_on TIMESTAMP NULL DEFAULT NULL
+			)
+		`,
+		`
+			CREATE TABLE IF NOT EXISTS dat_comments (
+				review_uuid VARCHAR(36) NOT NULL,
+				display_name VARCHAR(255) NOT NULL,
+				avatar TEXT NOT NULL,
+				comment TEXT NOT NULL,
+				created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 			)
 		`
 	];
@@ -347,6 +367,194 @@ app.post('/api/v1/updateReview', async function(req, res) {
 
 });
 
+app.post('/api/v1/attemptLogin', async function(req, res) {
+
+	console.log(req.body);
+
+	if(req.body.username === 'admin' && req.body.password === 'admin') {
+
+		if(req.body.remember_me) {
+			req.session.cookie.maxAge = null;
+		}
+
+		req.session.data = {
+			employee_uuid : "ADMIN_PLACEHOLDER_UUID",
+			display_name : "Admin",
+			position : "The Mighty Admin",
+			role : "admin",
+			avatar : admin_avatar
+		}
+
+		return res.json({
+			err : 0,
+			data : req.session.data
+		});
+
+	}
+
+	let sql = `
+		SELECT
+			employee_uuid,
+			display_name,
+			position,
+			avatar,
+			password_hash
+		FROM
+			dat_employees
+		WHERE
+			company_email = ?
+	`;
+
+	let args = [ req.body.username ];
+	let row;
+
+	try {
+		row = await asyncQuery('select', sql, args);
+	} catch(err) {
+		throw err;
+	}
+
+	if(!row) {
+		return res.json({
+			err : 1,
+			data : "Username not found"
+		});
+	}
+
+	let bool
+	try {
+		bool = await asyncCompare(req.body.password, row.password_hash);
+	} catch(err) {
+		throw err;
+	}
+
+	if(!bool) {
+		return res.json({
+			err : 1,
+			data : "Wrong Password"
+		});
+	}
+
+	delete row.password_hash;
+	row.role = "employee";
+
+	if(req.body.remember_me) {
+		req.session.cookie.maxAge = null;
+	}
+
+	req.session.data = row;
+	return res.json({
+		err : 0,
+		data : req.session.data
+	});
+
+});
+
+app.post('/api/v1/checkSession', async function(req, res) {
+
+	if(req.session.data) {
+
+		res.json({
+			err : 0,
+			data : req.session.data
+		});
+
+	} else {
+
+		res.json({
+			err : 1,
+			data : "Session not set"
+		});
+
+	}
+
+});
+
+app.post('/api/v1/endSession', async function(req, res) {
+
+	req.session.destroy(function(err) {
+		res.json({
+			err: 0,
+			data : null
+		});
+	});
+
+});
+
+app.post('/api/v1/leaveComment', async function(req, res) {
+
+	let sql = `
+		INSERT INTO dat_comments (
+			review_uuid,
+			display_name,
+			avatar,
+			comment
+		) VALUES (
+			?,
+			?,
+			?,
+			?
+		)
+	`;
+
+	let args = [
+		req.body.review_uuid,
+		req.session.data.display_name,
+		req.session.data.avatar,
+		req.body.comment
+	];
+
+	try {
+		await asyncQuery('insert', sql, args);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : {
+			display_name : req.session.data.display_name,
+			avatar : req.session.data.avatar,
+			comment : req.body.comment
+		}
+	});
+
+});
+
+app.post('/api/v1/selectComments', async function(req, res) {
+
+	let sql = `
+		SELECT 
+			display_name,
+			avatar,
+			comment
+		FROM
+			dat_comments
+		WHERE
+			review_uuid = ?
+		ORDER BY
+			created_on ASC
+	`;
+
+	let args = [
+		req.body.review_uuid
+	];
+
+
+	let rows
+	try {
+		rows = await asyncQuery('selectAll', sql, args);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : rows
+	});
+
+});
+
 /**
  * Promise Functions
  **/
@@ -369,6 +577,22 @@ function asyncHash(myPlaintextPassword) {
 				resolve(hash);
 			});
 
+		});
+
+	});
+
+}
+
+function asyncCompare(myPlaintextPassword, hash) {
+
+	return new Promise( function(resolve, reject) {
+
+		bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+			if(err) {
+				return reject(err);
+			}
+
+			resolve(result);
 		});
 
 	});

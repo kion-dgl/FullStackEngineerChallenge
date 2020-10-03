@@ -45,7 +45,6 @@ const LoginManager = (function() {
 			remember_me : this.DOM.form.remember_me.checked ? 1 : 0
 		};
 	
-		/*
 		const ajax = new XMLHttpRequest();
 		ajax.open("POST", "/api/v1/attemptLogin");
 		ajax.setRequestHeader('Content-Type', 'application/json');
@@ -54,10 +53,16 @@ const LoginManager = (function() {
 	
 		ajax.onload = () => {
 
-		}
-		*/
+			let res = ajax.response;
 
-		window.location.href = "panel.html";
+			if(res.err) {
+				return alert(res.data);
+			}
+
+			window.location.href = "panel.html";
+
+		}
+
 
 	}
 

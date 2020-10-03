@@ -8,6 +8,15 @@ const SessionManager = (function() {
 		header : {
 			role : document.getElementById('SessionManager.header.role'),
 			logout : document.getElementById('SessionManager.header.logout')
+		},
+		nav : {
+			avatar : document.getElementById('SessionManager.nav.avatar'),
+			name : document.getElementById('SessionManager.nav.name'),
+			position : document.getElementById('SessionManager.nav.position')
+		},
+		comment : {
+			avatar : document.getElementById('SessionManager.comment.avatar'),
+			name : document.getElementById('SessionManager.comment.name'),
 		}
 	}
 
@@ -18,6 +27,7 @@ const SessionManager = (function() {
 	this.API = {
 		checkSession : api_checkSession.bind(this),
 		getSessionData : api_getSessionData.bind(this),
+		initSession : api_initSession.bind(this),
 		endSession : api_endSession.bind(this)
 	}
 
@@ -37,25 +47,9 @@ const SessionManager = (function() {
 
 	}
 
-	function api_checkSession() {
+	function api_initSession() {
 
-		/*
-		const ajax = new XMLHttpRequest();
-		ajax.open("POST", "/api/v1/getSession");
-		ajax.setRequestHeader('Content-Type', 'application/json');
-		ajax.responseType = 'json';
-		ajax.send(JSON.stringify());
-
-		ajax.onload = () => {
-
-		}
-		*/
-
-		let session_data = {
-			role : "admin"
-		}
-		this.MEM.session_data = session_data;
-
+		let session_data = this.MEM.session_data;
 		PageManager.API.setRole(session_data.role);
 		EmployeeManager.API.setRole(session_data.role);
 
@@ -68,6 +62,36 @@ const SessionManager = (function() {
 			break;
 		}
 
+		this.DOM.nav.avatar.style.backgroundImage = 'url(' + session_data.avatar + ')';
+		this.DOM.nav.name.textContent = session_data.display_name;
+		this.DOM.nav.position.textContent = session_data.position;
+
+		this.DOM.comment.avatar.style.backgroundImage = 'url(' + session_data.avatar + ')';
+		this.DOM.comment.name.textContent = session_data.display_name;
+
+	}
+
+	function api_checkSession() {
+
+		const ajax = new XMLHttpRequest();
+		ajax.open("POST", "/api/v1/checkSession");
+		ajax.setRequestHeader('Content-Type', 'application/json');
+		ajax.responseType = 'json';
+		ajax.send(JSON.stringify());
+
+		ajax.onload = () => {
+			
+			let res;
+			res = ajax.response;
+			if(res.err) {
+				window.location.href = "/";
+			}
+
+			this.MEM.session_data = res.data;
+			this.API.initSession();
+
+		}
+
 	}
 
 	function evt_handleLogoutClick(evt) {
@@ -78,19 +102,18 @@ const SessionManager = (function() {
 
 	function api_endSession() {
 
-		/*
 		const ajax = new XMLHttpRequest();
-		ajax.open("POST", "/api/v1/attemptLogin");
+		ajax.open("POST", "/api/v1/endSession");
 		ajax.setRequestHeader('Content-Type', 'application/json');
 		ajax.responseType = 'json';
-		ajax.send(JSON.stringify(params));
+		ajax.send();
 
 		ajax.onload = () => {
+		
+			window.location.href = "/";
 
 		}
-		*/
 
-		window.location.href = "/";
 
 	}
 

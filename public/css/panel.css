@@ -58,7 +58,7 @@ main.panel header h1 {
 	font-weight: 400;
 	position: relative;
 	line-height: 70px;
-
+	width: 300px;
 }
 
 main.panel header div.cog {
@@ -116,7 +116,7 @@ main.panel header div.pill {
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #fff;
 	text-indent: 20px;
-	width: 150px;
+	width: 180px;
 	border-radius: 50px;
 	font-family: 'Mukta', sans-serif;
 	font-size: 22px;
@@ -209,6 +209,7 @@ main.panel section article {
 	background-color: #e2e2e2;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	padding-bottom: 20px;
+	padding-top: 10px;
 
 }
 
@@ -246,12 +247,6 @@ main.panel div.profile div.avatar {
 	border: 2px solid #4490b0;
 	border-radius: 100%;
 	background-color: #fff;
-
-}
-
-main.panel div.profile div.avatar.admin {
-
-	background-image: url('../img/shipGreen_manned.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 90%;
@@ -396,9 +391,8 @@ main.panel section article h2 a.save {
 
 main.panel section article h2 span {
 
-	margin-top: -4px;
-	padding-top: 4px;
-	background-color: #fff;
+	background-color: rgb(255, 255, 255);
+	border-radius: 30px;
 	display: block;
 	margin: auto;
 	width: 300px;
@@ -663,6 +657,15 @@ main.panel section article ul.comments {
 	margin: auto;
 	width: 70%;
 	display: block;
+
+}
+
+main.panel section article ul.comments div.list {
+
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px dashed #8a8a8a;
+
 }
 
 main.panel section article ul.comments li {
@@ -721,6 +724,20 @@ main.panel section article ul.comments li table td.avatar div.avatar {
 	margin: auto;
 	border-radius: 100%;
 	border: 2px solid #444;
+
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 90%;
+
+}
+
+main.panel section article ul.comments li table td.text b {
+	
+	display: block;
+	padding-left: 10px;
+	padding-bottom: 4px;
+	font-family: 'Mukta', sans-serif;
+	font-size: 16px;
 
 }
 
