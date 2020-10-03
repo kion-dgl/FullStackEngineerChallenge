@@ -16,6 +16,7 @@ const SessionManager = (function() {
 	}
 
 	this.API = {
+		checkSession : api_checkSession.bind(this),
 		getSessionData : api_getSessionData.bind(this),
 		endSession : api_endSession.bind(this)
 	}
@@ -25,19 +26,25 @@ const SessionManager = (function() {
 
 	function init() {
 
-		this.API.getSessionData();
+		this.API.checkSession();
 		this.DOM.header.logout.addEventListener('click', this.EVT.handleLogoutClick);
 
 	}
 
 	function api_getSessionData() {
 
+		return this.MEM.session_data;
+
+	}
+
+	function api_checkSession() {
+
 		/*
 		const ajax = new XMLHttpRequest();
-		ajax.open("POST", "/api/v1/attemptLogin");
+		ajax.open("POST", "/api/v1/getSession");
 		ajax.setRequestHeader('Content-Type', 'application/json');
 		ajax.responseType = 'json';
-		ajax.send(JSON.stringify(params));
+		ajax.send(JSON.stringify());
 
 		ajax.onload = () => {
 
@@ -47,7 +54,8 @@ const SessionManager = (function() {
 		let session_data = {
 			role : "admin"
 		}
-		
+		this.MEM.session_data = session_data;
+
 		PageManager.API.setRole(session_data.role);
 		EmployeeManager.API.setRole(session_data.role);
 

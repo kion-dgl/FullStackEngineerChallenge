@@ -357,6 +357,13 @@ main.panel section article h2 a {
 
 }
 
+main.panel section article h2 a:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
 main.panel section article h2 a.back {
 
 	left: 40px;

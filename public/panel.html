@@ -318,9 +318,11 @@
 				<article class="hide" id="PageManager.page.comments">
 					
 					<h2>
-						<a class="back">Back</a>
+						<a class="back" id="CommentManager.span.back">Back</a>
 						<span>Single Review</span>
-						<a class="edit">Edit</a>
+						<a class="edit" id="CommentManager.span.edit">Edit</a>
+						<a class="save hide" id="CommentManager.span.save">Save</a>
+						<a class="cancel hide" id="CommentManager.span.cancel">Cancel</a>
 					</h2>
 
 					<div class="review">
@@ -330,25 +332,33 @@
 								<tr>
 									<td class="label">Title</td>
 									<td class="input">
-										<input type="text" placeholder="Title"/>
+										<input type="text" id="CommentManager.form.title" placeholder="Title"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="label">Employee Name</td>
+									<td class="input">
+										<input type="text" id="CommentManager.form.name" placeholder="Employee Name"/>
 									</td>
 								</tr>
 								<tr>
 									<td class="label">Rating</td>
 									<td class="input">
 
-										<div class="star"></div>
-										<div class="star"></div>
-										<div class="star"></div>
-										<div class="star"></div>
-										<div class="star"></div>
+										<select id="CommentManager.form.rating">
+											<option value="5">5 Outstanding</option>
+											<option value="4">4 Pretty Good</option>
+											<option value="3">3 Could be Better</option>
+											<option value="2">2 Really Sucked</option>
+											<option value="1">1 Couldn't be Worse</option>
+										</select>
 
 									</td>
 								</tr>
 								<tr>
 									<td class="label">Review</td>
 									<td class="input">
-										<textarea placeholder="Review"></textarea>
+										<textarea id="CommentManager.form.review" placeholder="Review"></textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -410,6 +420,7 @@
 		<script type="text/javascript" src="js/PageManager.js"></script>
 		<script type="text/javascript" src="js/EmployeeManager.js"></script>
 		<script type="text/javascript" src="js/ReviewManager.js"></script>
+		<script type="text/javascript" src="js/CommentManager.js"></script>
 		<script type="text/javascript" src="js/SessionManager.js"></script>
 
 	</body>

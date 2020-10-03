@@ -190,8 +190,15 @@ const ReviewManager = (function() {
 	}
 
 	function evt_handleViewReviewClick(evt) {
+		
+		let elem = evt.target;
+		let userData = elem.userData;
 
-		console.log('click!!!');
+		if(!userData) {
+			return;
+		}
+		
+		CommentManager.API.openReview(userData.review_uuid);
 
 	}
 

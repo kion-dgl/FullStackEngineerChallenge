@@ -293,13 +293,15 @@ app.post('/api/v1/selectReview', async function(req, res) {
 			*
 		FROM
 			dat_reviews
+		WHERE
+			review_uuid = ?
 		ORDER BY
 			created_on DESC
 	`;
 	
 	let row;
 	try {
-		row = await asyncQuery('select', sql, []);
+		row = await asyncQuery('select', sql, [req.body.review_uuid]);
 	} catch(err) {
 		throw err;
 	}
