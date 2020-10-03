@@ -521,6 +521,13 @@ main.panel section article div.employees li.tbody table {
 
 }
 
+main.panel section article div.employees li.tbody table td.name {
+
+	text-align: left;
+	padding-left: 20px;
+
+}
+
 main.panel section article div.employees li.tbody table div.avatar {
 
 	width: 64px;

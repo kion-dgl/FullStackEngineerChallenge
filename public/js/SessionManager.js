@@ -49,6 +49,7 @@ const SessionManager = (function() {
 		}
 		
 		PageManager.API.setRole(session_data.role);
+		EmployeeManager.API.setRole(session_data.role);
 
 		switch(session_data.role) {
 		case "admin":

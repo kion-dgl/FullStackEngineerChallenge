@@ -63,11 +63,9 @@ app.listen(port, function() {
 
 app.post('/api/v1/addEmployee', async function(req, res) {
 
-	console.log(req.body);
 	
 	let employee_uuid = uuidv4();
 	let password_text = uniqid();
-
 	let password_hash;
 
 	try {
@@ -128,6 +126,76 @@ app.post('/api/v1/addEmployee', async function(req, res) {
 });
 
 
+app.post('/api/v1/selectEmployees', async function(req, res) {
+
+	
+	let employee_uuid = uuidv4();
+	let password_text = uniqid();
+	let password_hash;
+
+	try {
+		password_hash = await asyncHash(password_text);
+	} catch(err) {
+		throw err;
+	}
+
+	let sql = `
+		SELECT
+			employee_uuid,
+			company_email,
+			display_name,
+			position,
+			avatar,
+			password_text,
+			password_hash
+		FROM
+			dat_employees
+		WHERE
+			removed_on IS NULL
+		ORDER BY
+			created_on DESC
+	`;
+	
+	let rows;
+	try {
+		rows = await asyncQuery('selectAll', sql, []);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+		data : rows
+	});
+
+});
+
+
+app.post('/api/v1/removeEmployee', async function(req, res) {
+
+	
+	let sql = `
+		UPDATE
+			dat_employees
+		SET
+			removed_on = datetime('now')
+		WHERE
+			employee_uuid = ?
+	`;
+	
+	try {
+		await asyncQuery('update', sql, [req.body.employee_uuid]);
+	} catch(err) {
+		throw err;
+	}
+
+	res.json({
+		err : 0,
+	});
+
+});
+
+
 /**
  * Promise Functions
  **/
@@ -160,28 +228,39 @@ function asyncQuery(type, sql, args) {
 
 	return new Promise (function( resolve, reject) {
 	
-		let stmt;
-
 		switch(type) {
 		case 'insert':
 		case 'update':
-			stmt.run;
+
+			db.run (sql, args, function(err) {
+				if(err) {
+					return reject(err);
+				}
+				resolve(null);
+			});
+
 			break;
 		case 'select':
-			stmt.get;
+
+			db.get(sql, args, function(err, row) {
+				if(err) {
+					return reject(err);
+				}
+				resolve(row);
+			});
+
 			break;
 		case 'selectAll':
-			stmt.all;
+
+			db.all (sql, args, function(err, rows) {
+				if(err) {
+					return reject(err);
+				}
+				resolve(rows);
+			});
+			
 			break;
 		}
-
-		stmt(sql, args, function(err, res) {
-			if(err) {
-				return reject(err);
-			}
-
-			resolve(res);
-		});
 
 	});
 
