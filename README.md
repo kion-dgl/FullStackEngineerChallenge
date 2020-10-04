@@ -1,4 +1,29 @@
 # Full Stack Developer Challenge
+
+## Building this Project
+
+```
+$ git clone https://github.com/kion-dgl/FullStackEngineerChallenge.git
+$ cd FullStackEngineerChallenge/
+$ npm install
+$ node index.js 
+```
+
+The application will run on port 4000, and use Sqlite3 for the database. 
+Live Version: https://code.dashgl.com/
+
+The login information for the admin account is:
+Username: admin
+Password: admin
+
+Passwords are automatically generated for each user. 
+The usernames and password for the employees are listed in the employee list. 
+
+###　Screenshots
+
+![image 1](https://imgur.com/V8rDbu2)
+
+
 This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
 
 ## Requirements
