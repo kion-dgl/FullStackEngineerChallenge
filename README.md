@@ -1,5 +1,7 @@
 # Full Stack Developer Challenge
 
+I had one week for this challenge. My goal was to try and finish over the weekend.
+
 ## Building this Project
 
 ```
@@ -19,9 +21,9 @@ Password: admin
 Passwords are automatically generated for each user. 
 The usernames and password for the employees are listed in the employee list. 
 
-###　Screenshots
+### Screenshots
 
-![image 1](https://imgur.com/V8rDbu2)
+![image 1](https://i.imgur.com/V8rDbu2.jpg)
 
 
 This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
