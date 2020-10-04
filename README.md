@@ -24,14 +24,19 @@ The usernames and password for the employees are listed in the employee list.
 ### Screenshots
 
 ![image 1](https://i.imgur.com/V8rDbu2.jpg)
+![image 2](https://i.imgur.com/jLo7vIL.png)
+![image 3](https://i.imgur.com/cPIMbOA.png)
 
 
-This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
+## Mock up Design
 
-## Requirements
-Design a web application that allows employees to submit feedback toward each other's performance review.
+![image 4](https://i.imgur.com/rklSKxt.png)
 
-*Partial solutions are acceptable.*  It is not necessary to submit a complete solution that implements every requirement.
+Before getting started this was the image I drew in diagrams.net to plan out the application.
+The idea is to have a login to differentiate which user is logged in, and then have two main pages.
+One page for the employee list, and the other for reviews. Employees and reviews are added via a modal form.
+And comments are implemented in a comment section when viewing a single review.
+
 
 ### Admin view
 * Add/remove/update/view employees
