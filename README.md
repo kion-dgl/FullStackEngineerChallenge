@@ -39,13 +39,25 @@ And comments are implemented in a comment section when viewing a single review.
 
 
 ### Admin view
-* Add/remove/update/view employees
-* Add/update/view performance reviews
-* Assign employees to participate in another employee's performance review
+
+- [x] Add Employee
+- [x] View Employees
+- [ ] Update Employee
+- [x] Remove Employee
+
+- [x] Add Review
+- [x] View Reviews
+- [x] Update Review
+- [x] Remove Employee
+
+- [ ] Assign employees to participate in another employee's performance review
+
+In the interest of time I trimmed the update employees to be able to write information to the database once, and then not have to worry about it being consistent with subsequent updates. And for assigning employees to participate in other reviews, I cut corners by allowing everyone to see all of the reviews and comment.
 
 ### Employee view
-* List of performance reviews requiring feedback
-* Submit feedback
+
+- [x] View Reviews
+- [x] Add Comments
 
 ## Challenge Scope
 * High level description of design and technologies used
@@ -57,14 +69,3 @@ And comments are implemented in a comment section when viewing a single review.
     * This should integrate with your API, but it's fine to use static responses for some of it 
 * Document all assumptions made
 * Complete solutions aren't required, but what you do submit needs to run.
-
-## How to complete this challenge
-* Fork this repo in github
-* Complete the design and code as defined to the best of your abilities
-* Place notes in your code to help with clarity where appropriate. Make it readable enough to present to the PayPay interview team
-* Complete your work in your own github repo and send the results to us and/or present them during your interview
-
-## What are we looking for? What does this prove?
-* Assumptions you make given limited requirements
-* Technology and design choices
-* Identify areas of your strengths
